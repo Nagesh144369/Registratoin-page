@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration Form</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="vikas.css">
+</head>
+<body>
+
+<div class="container" role="main">
+    <h2 id="formTitle">Create Account</h2>
+
+    <!-- Profile Photo Upload -->
+    <div class="profile-photo-section">
+        <div class="photo-preview" id="photoPreview" role="img" aria-label="Profile photo preview" onclick="document.getElementById('photoInput').click()">
+            <i class="fas fa-user-circle" aria-hidden="true"></i>
+            <span>Click to Upload</span>
+        </div>
+        <input type="file" id="photoInput" accept="image/png, image/jpeg, image/jpg, image/svg+xml" aria-required="true" aria-describedby="photoError photoInfo">
+        <label for="photoInput" class="photo-upload-btn" tabindex="0" role="button" aria-label="Choose profile photo">
+            <i class="fas fa-camera" aria-hidden="true"></i> Choose Photo
+        </label>
+        <div class="photo-info" id="photoInfo">
+            <i class="fas fa-info-circle"></i> Accepted: JPG, JPEG, PNG, SVG (Max 5MB)
+        </div>
+        <span class="error-message" id="photoError" role="alert" aria-live="polite"></span>
+    </div>
+
+    <form id="registrationForm" novalidate aria-labelledby="formTitle">
+
+        <div class="grid">
+
+            <!-- First Name -->
+            <div class="form-group">
+                <label for="firstName" class="required">First Name</label>
+                <input type="text" id="firstName" minlength="2" maxlength="20" placeholder="John" data-rule="name" 
+                       aria-required="true" aria-describedby="firstNameError" aria-invalid="false">
+                <span class="error-message" id="firstNameError" role="alert" aria-live="assertive"></span>
+                <span class="success-icon" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
+            </div>
+
+            <!-- Last Name -->
+            <div class="form-group">
+                <label for="lastName" class="required">Last Name</label>
+                <input type="text" id="lastName"  maxlength="20" placeholder="Doe" data-rule="name" 
+                       aria-required="true" aria-describedby="lastNameError" aria-invalid="false">
+                <span class="error-message" id="lastNameError" role="alert" aria-live="assertive"></span>
+                <span class="success-icon" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
+            </div>
+
+            <!-- Username -->
+            <div class="form-group">
+                <label for="username" class="required">Username</label>
+                <input type="text" id="username" maxlength="30" placeholder="john_doe@123" data-rule="username" 
+                       aria-required="true" aria-describedby="usernameError" aria-invalid="false">
+                <span class="error-message" id="usernameError" role="alert" aria-live="assertive"></span>
+                <span class="success-icon" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email" class="required">Email</label>
+                <input type="email" id="email" maxlength="100" placeholder="example@email.com" data-rule="email" 
+                       aria-required="true" aria-describedby="emailError" aria-invalid="false">
+                <span class="error-message" id="emailError" role="alert" aria-live="assertive"></span>
+                <span class="success-icon" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
+            </div>
+
+            <!-- Mobile Number -->
+            <div class="form-group">
+                <label for="mobile" class="required">Mobile Number</label>
+                <input type="tel" id="mobile" maxlength="10" placeholder="10-digit number" data-rule="mobile" 
+                       aria-required="true" aria-describedby="mobileError" aria-invalid="false">
+                <span class="error-message" id="mobileError" role="alert" aria-live="assertive"></span>
+                <span class="success-icon" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="form-group">
+                <label for="dob" class="required">Date of Birth</label>
+                <input type="date" id="dob" data-rule="dob" max="" 
+                       aria-required="true" aria-describedby="dobError" aria-invalid="false">
+                <span class="error-message" id="dobError" role="alert" aria-live="assertive"></span>
+                <span class="success-icon" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
+                
+                <!-- Age Display -->
+                <div id="ageDisplayContainer" class="age-display-container" style="display: none;">
+                    <span class="age-label">Your Age: </span>
+                    <span id="ageDisplay" class="age-value">0</span>
+                    <span class="age-label"> years</span>
+                </div>
+            </div>
+
+        <!-- Parental Consent Section -->
+        <div id="parentalConsentSection" class="parental-consent hidden" role="region" aria-labelledby="parentalConsentTitle">
+            <h3 id="parentalConsentTitle">Parental/Guardian Consent Required</h3>
+            <p>You must be 18 or older to register. Please provide parental/guardian information.</p>
+            
+            <div class="form-group">
+                <label for="guardianName" class="required">Parent/Guardian Name</label>
+                <input type="text" id="guardianName" maxlength="100" placeholder="Full name" data-rule="name" 
+                       aria-required="true" aria-describedby="guardianNameError">
+                <span class="error-message" id="guardianNameError" role="alert" aria-live="assertive"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="guardianEmail" class="required">Parent/Guardian Email</label>
+                <input type="email" id="guardianEmail" maxlength="100" placeholder="guardian@email.com" data-rule="email" 
+                       aria-required="true" aria-describedby="guardianEmailError">
+                <span class="error-message" id="guardianEmailError" role="alert" aria-live="assertive"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="guardianPhone" class="required">Parent/Guardian Phone</label>
+                <input type="tel" id="guardianPhone" maxlength="10" placeholder="10-digit number" data-rule="mobile" 
+                       aria-required="true" aria-describedby="guardianPhoneError">
+                <span class="error-message" id="guardianPhoneError" role="alert" aria-live="assertive"></span>
+            </div>
+            
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="guardianConsent" aria-required="true">
+                    <span>I confirm that I am the parent/guardian and consent to this registration</span>
+                </label>
+                <span class="error-message" id="guardianConsentError" role="alert" aria-live="assertive"></span>
+            </div>
+        </div>
+
+            <!-- Postal Code -->
+            <div class="form-group">
+                <label for="postalCode" class="required">Postal/Pin Code</label>
+                <input type="text" id="postalCode" maxlength="6" placeholder="Enter 6-digit postal code" data-rule="postal" 
+                       aria-required="true" aria-describedby="postalCodeError" aria-invalid="false">
+                <span class="error-message" id="postalCodeError" role="alert" aria-live="assertive"></span>
+                <span class="success-icon" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
+            </div>
+
+            <!-- Country -->
+            <div class="form-group">
+                <label for="country" class="required">Country</label>
+                <select id="country" data-rule="required" 
+                        aria-required="true" aria-describedby="countryError" aria-invalid="false">
+                    <option value="">Select Country</option>
+                </select>
+                <span class="error-message" id="countryError" role="alert" aria-live="assertive"></span>
+                <span class="success-icon" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
+            </div>
+
+            <!-- State -->
+            <div class="form-group">
+                <label for="state" class="required">State</label>
+                <select id="state" data-rule="required" disabled 
+                        aria-required="true" aria-describedby="stateError" aria-invalid="false">
+                    <option value="">Select State</option>
+                </select>
+                <span class="error-message" id="stateError" role="alert" aria-live="assertive"></span>
+                <span class="success-icon" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
+            </div>
+
+            <!-- City -->
+            <div class="form-group">
+                <label for="city" class="required">City</label>
+                <select id="city" data-rule="required" disabled 
+                        aria-required="true" aria-describedby="cityError" aria-invalid="false">
+                    <option value="">Select City</option>
+                </select>
+                <span class="error-message" id="cityError" role="alert" aria-live="assertive"></span>
+                <span class="success-icon" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
+            </div>
+
+            <!-- Education -->
+            <div class="form-group">
+                <label for="education" class="required">Education</label>
+                <select id="education" data-rule="required" 
+                        aria-required="true" aria-describedby="educationError" aria-invalid="false">
+                    <option value="">Select Education</option>
+                    <option value="High School">High School</option>
+                    <option value="Diploma">Diploma</option>
+                    <option value="Bachelor's Degree">Bachelor's Degree</option>
+                    <option value="Master's Degree">Master's Degree</option>
+                    <option value="PhD">PhD</option>
+                </select>
+                <span class="error-message" id="educationError" role="alert" aria-live="assertive"></span>
+                <span class="success-icon" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <label for="password" class="required">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" maxlength="50" placeholder="Strong password" data-rule="password" 
+                           aria-required="true" aria-describedby="passwordError" aria-invalid="false">
+                    <i class="fas fa-eye toggle-password" tabindex="0" role="button" 
+                       aria-label="Toggle password visibility" aria-pressed="false"></i>
+                </div>
+                <span class="error-message" id="passwordError" role="alert" aria-live="assertive"></span>
+                <span class="success-icon" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-group">
+                <label for="confirmPassword" class="required">Confirm Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="confirmPassword" maxlength="50" placeholder="Repeat password" data-rule="confirmPassword" 
+                           aria-required="true" aria-describedby="confirmPasswordError" aria-invalid="false">
+                    <i class="fas fa-eye toggle-password" tabindex="0" role="button" 
+                       aria-label="Toggle confirm password visibility" aria-pressed="false"></i>
+                </div>
+                <span class="error-message" id="confirmPasswordError" role="alert" aria-live="assertive"></span>
+                <span class="success-icon" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
+            </div>
+
+        </div>
+
+        <!-- Gender Radio Buttons -->
+        <div class="form-group" role="radiogroup" aria-labelledby="genderLabel" aria-required="true">
+            <label id="genderLabel" class="required">Gender</label>
+            <div class="radio-group">
+                <label class="radio-label">
+                    <input type="radio" name="gender" value="Male" aria-checked="false">
+                    <span>Male</span>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="gender" value="Female" aria-checked="false">
+                    <span>Female</span>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="gender" value="Other" aria-checked="false">
+                    <span>Other</span>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="gender" value="Prefer not to say" aria-checked="false">
+                    <span>Prefer not to say</span>
+                </label>
+            </div>
+            <span class="error-message" id="genderError" role="alert" aria-live="assertive"></span>
+        </div>
+
+        <!-- Address -->
+        <div class="form-group">
+            <label for="address" class="required">Address</label>
+            <textarea id="address" maxlength="200" placeholder="Full address" data-rule="address" 
+                      aria-required="true" aria-describedby="addressError" aria-invalid="false"></textarea>
+            <span class="error-message" id="addressError" role="alert" aria-live="assertive"></span>
+            <span class="success-icon" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
+        </div>
+
+        <!-- Security Question -->
+        <div class="form-group">
+            <label for="securityQuestion" class="required">Security Question</label>
+            <select id="securityQuestion" data-rule="required" 
+                    aria-required="true" aria-describedby="securityQuestionError" aria-invalid="false">
+                <option value="">Select a question</option>
+                <option value="pet">What is your pet's name?</option>
+                <option value="teacher">Your favorite teacher?</option>
+                <option value="city">City you were born in?</option>
+            </select>
+            <span class="error-message" id="securityQuestionError" role="alert" aria-live="assertive"></span>
+            <span class="success-icon" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
+        </div>
+
+        <!-- Security Answer -->
+        <div class="form-group">
+            <label for="securityAnswer" class="required">Answer</label>
+            <input type="text" id="securityAnswer" maxlength="100" placeholder="Your answer" data-rule="securityAnswer" 
+                   aria-required="true" aria-describedby="securityAnswerError" aria-invalid="false">
+            <span class="error-message" id="securityAnswerError" role="alert" aria-live="assertive"></span>
+            <span class="success-icon" aria-hidden="true"><i class="fas fa-check-circle"></i></span>
+        </div>
+
+        <!-- Terms Checkbox -->
+        <div class="form-group">
+            <label class="checkbox-label">
+                <input type="checkbox" id="terms" aria-required="true" aria-describedby="termsError">
+                <span>I agree to the Terms & Conditions</span>
+            </label>
+            <span class="error-message" id="termsError" role="alert" aria-live="assertive"></span>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn" id="submitBtn" disabled aria-label="Submit registration form">
+            <i class="fas fa-user-plus" aria-hidden="true"></i> Register
+        </button>
+
+    </form>
+
+    <!-- Social Login -->
+    <div class="social" role="group" aria-label="Social login options">
+        <p class="or-text">Or sign up with</p>
+        <button class="social-btn google" aria-label="Sign up with Google">
+            <i class="fab fa-google" aria-hidden="true"></i> Google
+        </button>
+        <button class="social-btn facebook" aria-label="Sign up with Facebook">
+            <i class="fab fa-facebook-f" aria-hidden="true"></i> Facebook
+        </button>
+        <button class="social-btn twitter" aria-label="Sign up with X">
+            <i class="fab fa-x-twitter" aria-hidden="true"></i> X
+        </button>
+    </div>
+</div>
+
+<!-- Confirmation Modal -->
+<div id="confirmModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+    <div class="modal-box">
+        <div class="modal-header">
+            <i class="fas fa-check-circle" aria-hidden="true"></i>
+            <h3 id="modalTitle">Registration Successful!</h3>
+        </div>
+        <div class="modal-profile-photo" id="modalPhoto" role="img" aria-label="User profile photo"></div>
+        <table class="confirm-table" id="confirmTable" role="table"></table>
+        <button class="close-btn" id="closeModal" aria-label="Close confirmation dialog">Close</button>
+    </div>
+</div>
+
+<footer role="contentinfo">
+    © 2025 Registration Form
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
